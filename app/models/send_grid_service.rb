@@ -1,7 +1,8 @@
 require 'rest-client'
 
 class SendGridService
-  def initialize(base_url=ENV['SEND_GRID_BASE_URL'])
+  def initialize(base_url=ENV['SEND_GRID_BASE_URL'], api_key=ENV['SEND_GRID_API_KEY'])
+    @api_key = api_key
     @base_url = base_url
   end
 
@@ -14,7 +15,7 @@ class SendGridService
     body = email_params[:body]
 
     headers = {
-      Authorization: "Bearer #{ENV['SEND_GRID_API_KEY']}",
+      Authorization: "Bearer #{@api_key}",
       content_type: "application/json"
     }
 

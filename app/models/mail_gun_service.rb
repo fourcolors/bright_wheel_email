@@ -1,8 +1,8 @@
 require 'rest-client'
 
 class MailGunService
-  def initialize(base_url=ENV['MAIL_GUN_BASE_URL'])
-    @api_key = ENV['MAIL_GUN_API_KEY']
+  def initialize(base_url=ENV['MAIL_GUN_BASE_URL'], api_key=ENV['MAIL_GUN_API_KEY'])
+    @api_key = api_key
     @base_url = base_url
   end
 

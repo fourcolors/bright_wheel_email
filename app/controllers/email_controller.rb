@@ -1,24 +1,18 @@
 class EmailController < ApplicationController
   def create
-    EmailService.send_email email_params
+    email = Email.new email_params
 
-    # if email_response
-      # head :no_content
-    # else
-      # render :unprocessable_entity
-    # end
+    if email.valid?
+      # EmailService.send_email email_params
+      head :no_content
+    else
+      render :json => { :errors => email.errors.full_messages}
+    end
   end
 
   private
 
   def email_params
-    params.tap do |email_params|
-      email_params.require(:to)
-      email_params.require(:to_name)
-      email_params.require(:from)
-      email_params.require(:from_name)
-      email_params.require(:subject)
-      email_params.require(:body)
-    end
+    params.permit(:to, :to_name, :from, :from_name, :subject, :body)
   end
 end
