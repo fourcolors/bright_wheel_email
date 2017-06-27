@@ -1,7 +1,7 @@
 class EmailController < ApplicationController
   def create
-    email = email_params
-    head :success
+    EmailService.send_email email_params
+    head :no_content
   end
 
   private
