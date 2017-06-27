@@ -17,7 +17,7 @@ class MailGunService
         :sender => email.from_name,
         :to => email.to,
         :subject => email.subject,
-        :text => email.body,
+        :text => email.plain_text_body,
         :multipart => true
       },
       :headers => {

@@ -44,7 +44,7 @@ class SendGridService
       "content": [
         {
           "type": "text/plain",
-          "value": email.body
+          "value": email.plain_text_body
         }
       ]
     }.to_json
