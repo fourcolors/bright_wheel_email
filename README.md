@@ -9,7 +9,6 @@ This project was created in Ruby on Rails. It's recommended you use Ruby `2.4.1p
 NOTE: You may need to `bin/rake db:migate` even though nothing is persisted.
 
 ## Project Overview
----
 ### Testing
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/fde4694f087d53dcfef6)
