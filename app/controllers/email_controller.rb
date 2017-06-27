@@ -1,7 +1,12 @@
 class EmailController < ApplicationController
   def create
     EmailService.send_email email_params
-    head :no_content
+
+    # if email_response
+      # head :no_content
+    # else
+      # render :unprocessable_entity
+    # end
   end
 
   private
