@@ -3,6 +3,7 @@ class Email
   
   attr_accessor :to, :to_name, :from, :from_name, :subject, :body
   validates :to, :to_name, :from, :from_name, :subject, :body, presence: true
+  validates :to, :from, :format => /@/
 
   def persisted?
     false
