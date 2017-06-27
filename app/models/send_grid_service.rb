@@ -6,49 +6,47 @@ class SendGridService
     @base_url = base_url
   end
 
-  def send_email(email_params)
-    to = email_params[:to]
-    to_name = email_params[:to_name]
-    from = email_params[:from]
-    from_name = email_params[:from_name]
-    subject = email_params[:subject]
-    body = email_params[:body]
+  def send_email(email)
+    RestClient.post(@base_url, email_json(email), headers)
+  end
 
-    headers = {
+  private
+
+  def headers
+    {
       Authorization: "Bearer #{@api_key}",
       content_type: "application/json"
     }
+  end
 
-    params = {
+  def email_json(email)
+    {
       "personalizations": [
         {
           "to": [
             {
-              "email": to,
-              "name": to_name 
+              "email": email.to,
+              "name": email.to_name 
             }
           ],
-          "subject": subject
+          "subject": email.subject
         }
       ],
       "from": {
-        "email": from,
-        "name": from_name
+        "email": email.from,
+        "name": email.from_name
       },
       "reply_to": {
-        "email": to,
-        "name": to_name
+        "email": email.to,
+        "name": email.to_name
       },
-      "subject": subject,
+      "subject": email.subject,
       "content": [
         {
           "type": "text/plain",
-          "value": body
+          "value": email.body
         }
       ]
-    }
-
-
-    RestClient.post(@base_url, params.to_json, headers)
+    }.to_json
   end
 end

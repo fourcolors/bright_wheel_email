@@ -7,4 +7,8 @@ class Email
   def persisted?
     false
   end
+
+  def plain_text_body
+    ActionController::Base.helpers.strip_tags(self.body)
+  end
 end

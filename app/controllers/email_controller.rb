@@ -2,9 +2,8 @@ class EmailController < ApplicationController
   def create
     email = Email.new email_params
 
-    if email.valid?
-      # EmailService.send_email email_params
-      head :no_content
+    if email.valid? && EmailService.send_email(email)
+      render :json => { :message => "Email is being processed", status: :accepted}
     else
       render :json => { :errors => email.errors.full_messages}
     end

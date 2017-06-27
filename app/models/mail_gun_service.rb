@@ -6,25 +6,18 @@ class MailGunService
     @base_url = base_url
   end
 
-  def send_email(email_params)
-    to = email_params[:to]
-    to_name = email_params[:to_name]
-    from = email_params[:from]
-    from_name = email_params[:from_name]
-    subject = email_params[:subject]
-    body = email_params[:body]
-
+  def send_email(email)
     RestClient::Request.execute(
       :user => "api",
       :password => @api_key,
       :url => "#{@base_url}/messages",
       :method => :post,
       :payload => {
-        :from => from,
-        :sender => from_name,
-        :to => to,
-        :subject => subject,
-        :text => body,
+        :from => email.from,
+        :sender => email.from_name,
+        :to => email.to,
+        :subject => email.subject,
+        :text => email.body,
         :multipart => true
       },
       :headers => {
