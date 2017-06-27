@@ -1,12 +1,15 @@
 # Brightwheel Email Server
 ## Setup
----
+
 This project was created in Ruby on Rails. It's recommended you use Ruby `2.4.1p111`. If you have rebenv, you may want to `rbenv install 2.4.1` then `rbenv local 2.4.1`.
- Now its as easy as `bin/bundle install`, `bin/rails s` then send request to `http://locahost:3000/email` and bob's your uncle.
 
+then...
 
-
-NOTE: You may need to `bin/rake db:migate` even though nothing is persisted.
+- from the projects root, `cp .env.local .env`
+- fill in the `.env` with correct API keys
+- `bin/bundle install`
+- `bin/rails s`
+- `bin/rake db:migrate` (you might need this even though nothing is persisted)
 
 ## Project Overview
 ### Testing
